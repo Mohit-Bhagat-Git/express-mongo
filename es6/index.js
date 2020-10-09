@@ -12,11 +12,11 @@ app.use((req, res, next)=>{
     console.log(JSON.stringify(error))
     next(error);
 })
-
+//Now when ever we throw error from application with next(error); this piece of code will handle it.
 app.use((err, req, res, next)=>{
-    res.statusCode= err.status
+    res.statusCode= err.status || 500
     res.send({
-        error: err.message
+        error: err.message || 'Internal Server Error'
     })
 })
 
