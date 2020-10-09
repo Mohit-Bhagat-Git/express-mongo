@@ -1,6 +1,10 @@
 import express from 'express';
-const Router = express.Router();
-Router.get('/', (req, res, next)=>{res.send("Default response")})
-Router.get('/error', (req, res, next)=>{next(new Error())})
+import ProductRouter from './product/product-router.js'
+import AccountRounter from './account/account-router.js'
+const routerConfig = express();
 
-export default Router;
+routerConfig.use('/product', ProductRouter)
+routerConfig.use('/account', AccountRounter)
+routerConfig.get('/error', (req, res, next)=>{next(new Error())})
+
+export default routerConfig;
