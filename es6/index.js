@@ -4,12 +4,12 @@ import Router from './router-config.js'
 const app = express();
 app.listen(1111, ()=>{console.log("ES6 Server started on port:1111")})
 app.use('/es6', Router)
+app.use(express.static('../resources'))
 app.use((req, res, next)=>{
     const error ={
         status : 404,
         message: "API Not Found"
     }
-    console.log(JSON.stringify(error))
     next(error);
 })
 //Now when ever we throw error from application with next(error); this piece of code will handle it.
